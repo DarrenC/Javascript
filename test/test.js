@@ -4,3 +4,7 @@
  */
 
 // Test comment
+
+function test(){
+	
+}
