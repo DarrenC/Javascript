@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    
+    <link rel="stylesheet" href="default.css" type="text/css"/>
+    <link rel="stylesheet" href="anythingslider.css">
+    
+    <script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAASIKHWBDPWIeZim4xMcLBNRQH47hhfdnSFZtW7Usb4B7pUh2CMhSjCIklLpKvWC-gq_2NYG-pHpLWZw"></script>
+    <script type="text/javascript" src="../library/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../library/jquery.anythingslider.js"></script>
+    
+    <script type="text/javascript">
+    google.load("feeds", "1");
+    
+
+    function initialize() {
+      var feed = new google.feeds.Feed("http://www.monaco.mc/Pages/Accueil/monaco_actualites/a_la_une/monaco_actualites_rss/cache/off");
+      feed.setNumEntries(5);
+      feed.load(function(result) {
+        if (!result.error) {
+          var container = document.getElementById("feed");
+          
+          var list = document.createElement("ul");
+          list.setAttribute("id", "listing");
+              
+          for (var i = 0; i < result.feed.entries.length; i++) {
+            var entry = result.feed.entries[i];
+            
+            var listItem = document.createElement("li");
+            
+            var div = document.createElement("div");
+            div.className = "item";
+            
+            var divTitle = document.createElement("div");
+            divTitle.appendChild(document.createTextNode(entry.title));
+            divTitle.className = "title";
+            
+            var divContent = document.createElement("div");
+            divContent.innerHTML = entry.contentSnippet;
+            divContent.className = "snippet";
+            
+            div.appendChild(divTitle);
+            div.appendChild(divContent);
+            listItem.appendChild(div);
+            list.appendChild(listItem);
+          }
+          
+          container.appendChild(list);
+          dcTest();
+        }else{
+        	alert("Error");
+        }
+      });
+    }
+    google.setOnLoadCallback(initialize);
+ 
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	
+    	dcTest = function(){
+    		$('#listing').anythingSlider();
+    	}; 
+    });
+    </script>
+    
+    
+  </head>
+  <body>
+    <div id="feed">
+    
+    </div>
+    <hr>
+<!--     <div id="feedStatic"> -->
+    
+<!--         <div class="item"> -->
+<!--             <div class="title">Monaco Fine Art : fermeture définitive !</div> -->
+<!--             <div class="snippet">Le 10 janvier prochain, l’une des plus prestigieuses galeries monégasques, Monaco Fine Art, fermera ...</div> -->
+<!--             <div class="image"> -->
+<!--                 <img src="http://iamdarren.net/wordPress/wp-content/uploads/2010/07/cropped-IMG_4874.jpg" height="198" width="800"/> -->
+<!--             </div> -->
+<!--             <span class="right"><img height="30" width="30" src="http://t2.gstatic.com/images?q=tbn:ANd9GcSQ2MkFih_sozpPSk9QZHeMiiD6MD_feZMcdMUFfq3Crd9AC6A7vQ"/></span> -->
+<!--             <span class="left"><img height="30" width="30" src="http://t2.gstatic.com/images?q=tbn:ANd9GcSQ2MkFih_sozpPSk9QZHeMiiD6MD_feZMcdMUFfq3Crd9AC6A7vQ"/></span> -->
+<!--         </div> -->
+        
+<!--     </div> -->
+    
+  </body>
+</html>
