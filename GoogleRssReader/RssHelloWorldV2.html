@@ -2,16 +2,21 @@
   <head>
     <meta charset="UTF-8" />
     
-    <link rel="stylesheet" href="default.css" type="text/css"/>
-    <link rel="stylesheet" href="anythingslider.css">
+     <link rel="stylesheet" href="anythingslider.css">
     
     <script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAASIKHWBDPWIeZim4xMcLBNRQH47hhfdnSFZtW7Usb4B7pUh2CMhSjCIklLpKvWC-gq_2NYG-pHpLWZw"></script>
     <script type="text/javascript" src="../library/jquery-1.7.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+   
     <script type="text/javascript" src="../library/jquery.anythingslider.js"></script>
     
     <script type="text/javascript">
     google.load("feeds", "1");
     
+    arrImages = ['http://iamdarren.net/wordPress/wp-content/uploads/2010/07/cropped-IMG_4874.jpg',
+    		'http://www.monaco.mc/webdav/site/monaco-telecom/shared/_Mobile/img/pastilles/term_595x200.jpg',
+    		'http://iamdarren.net/wordPress/wp-content/uploads/2010/07/cropped-IMG_4874.jpg'
+    		];
 
     function initialize() {
       var feed = new google.feeds.Feed("http://www.monaco.mc/Pages/Accueil/monaco_actualites/a_la_une/monaco_actualites_rss/cache/off");
@@ -33,14 +38,23 @@
             
             var divTitle = document.createElement("div");
             divTitle.appendChild(document.createTextNode(entry.title));
-            divTitle.className = "title";
+            divTitle.className = "title caption-top";
             
             var divContent = document.createElement("div");
             divContent.innerHTML = entry.contentSnippet;
             divContent.className = "snippet";
             
+            var divImage = document.createElement("div");
+            divImage.className="image";
+            divImage.innerHTML="<img src='"+ arrImages[1] +"'/>";
+            
+            div.appendChild(divImage);
             div.appendChild(divTitle);
             div.appendChild(divContent);
+            
+            //Test for image
+            listItem.appendChild(divTitle);
+            
             listItem.appendChild(div);
             list.appendChild(listItem);
           }
@@ -64,6 +78,16 @@
     });
     </script>
     
+     <link rel="stylesheet" href="default.css" type="text/css"/>
+         
+    <!-- AnythingSlider optional FX extension -->
+    <script src="../library/jquery.anythingslider.fx.js"></script>
+    
+    <!-- Demos page only -->
+    <link rel="stylesheet" href="demos/css/page.css">
+    <link rel="stylesheet" href="demos/colorbox/colorbox.css">
+    <script src="demos/js/demo.js"></script>
+    <script src="demos/colorbox/jquery.colorbox-min.js"></script>
     
   </head>
   <body>
@@ -84,6 +108,28 @@
 <!--         </div> -->
         
 <!--     </div> -->
+    
+    <!-- AnythingSlider #3 -->
+  <ul id="slider3">
+   <li class="panel1">
+    <!-- Note this caption is before the image, all others it is after -->
+    <div class="caption-top">In Soviet Russia, concrete pours you!</div>
+    <img src="demos/images/slide-civil-1.jpg" alt="" />
+   </li>
+   <li class="panel2">
+    <img src="demos/images/slide-env-1.jpg" alt="" />
+    <div class="caption-right">How many supervisors are there? Wrong! 5, who is taking the picture?</div>
+   </li>
+   <li class="panel3">
+    <img src="demos/images/slide-civil-2.jpg" alt="" />
+    <div class="caption-bottom">Alas, the pylon would never make it to the hydrant, her true love.</div>
+   </li>
+   <li class="panel4">
+    <img src="demos/images/slide-env-2.jpg" alt="" />
+    <div class="caption-left">Take a left at the traffic circle.</div>
+   </li>
+  </ul>
+  <!-- END AnythingSlider #3 -->
     
   </body>
 </html>
