@@ -20,7 +20,7 @@
 
     function initialize() {
       var feed = new google.feeds.Feed("http://www.monaco.mc/Pages/Accueil/monaco_actualites/a_la_une/monaco_actualites_rss/cache/off");
-      feed.setNumEntries(5);
+      feed.setNumEntries(15);
       feed.load(function(result) {
         if (!result.error) {
           var container = document.getElementById("feed");
@@ -35,15 +35,15 @@
             
             var divTitle = document.createElement("div");
             divTitle.appendChild(document.createTextNode(entry.title));
-            divTitle.className = "title caption-bottom";
+            divTitle.className = "title dcTitle";
             
             var divContent = document.createElement("div");
             divContent.innerHTML = entry.contentSnippet;
-            divContent.className = "snippet";
+            divContent.className = "snippet caption-bottom";
             
             var divImage = document.createElement("div");
             divImage.className="image";
-            divImage.innerHTML="<img src='"+ arrImages[1] +"'/>";
+            divImage.innerHTML="<img src='"+ arrImages[Math.floor(Math.random()*3)] +"'/>";
             
             listItem.appendChild(divImage);
             listItem.appendChild(divTitle);
@@ -66,23 +66,34 @@
     $(document).ready(function(){
     	
     	dcTest = function(){
-    		$('#listing').anythingSlider().anythingSliderFx({
-    			'.caption-top' : [ 'caption-Top', '50px' ],
-    			'.caption-right' : [ 'caption-Right', '130px', '1000', 'easeOutBounce' ],
-    			'.caption-bottom' : [ 'caption-Bottom', '50px' ],
-    			'.caption-left' : [ 'caption-Left', '130px', '1000', 'easeOutBounce' ]
-    			})// add a close button (x) to the caption
-    			.find('div[class*=caption]')
-    			.css({ position: 'absolute' })
-    			.prepend('<span class="close">x</span>')
-    			.find('.close').click(function(){
-    			var cap = $(this).parent(),
-    			ani = { bottom : -50 }; // bottom
-    			if (cap.is('.caption-top')) { ani = { top: -50 }; }
-    			if (cap.is('.caption-left')) { ani = { left: -150 }; }
-    			if (cap.is('.caption-right')) { ani = { right: -150 }; }
-    			cap.animate(ani, 400);
-    			});  ;
+    		$('#listing').anythingSlider()
+    		  .find('.panel')
+    	        .find('div[class*=caption]').css({ position: 'absolute' }).end()
+    	        .hover(function(){ showCaptions( $(this) ); }, function(){ hideCaptions( $(this) ); });
+
+    	    showCaptions = function(el){
+    	        var $this = el;
+    	        if ($this.find('.caption-top').length) { $this.find('.caption-top').show().animate({ top: 0, opacity: 1 }, 400); }
+    	        if ($this.find('.caption-right').length) { $this.find('.caption-right').show().animate({ right: 0, opacity: 1 }, 400); }
+    	        if ($this.find('.caption-bottom').length) { 
+    	            $this.find('.caption-bottom').show().animate({ bottom: 0, opacity: 1 }, 400);
+    	            $this.find('.dcTitle').show().animate({ bottom: 50, opacity: 1 }, 400);
+    	        }
+    	        if ($this.find('.caption-left').length) { $this.find('.caption-left').show().animate({ left: 0, opacity: 1 }, 400); }
+    	    };
+    	    hideCaptions = function(el){
+    	        var $this = el;
+    	        if ($this.find('.caption-top').length) { $this.find('.caption-top').stop().animate({ top: -50, opacity: 0 }, 400); }
+    	        if ($this.find('.caption-right').length) { $this.find('.caption-right').stop().animate({ right: -150, opacity: 0 }, 400); }
+    	        if ($this.find('.caption-bottom').length) { 
+    	            $this.find('.caption-bottom').stop().animate({ bottom: -50, opacity: 0 }, 400);
+    	            $this.find('.dcTitle').stop().animate({ bottom: 0, opacity: 1 }, 400);
+    	        }
+    	        if ($this.find('.caption-left').length) { $this.find('.caption-left').stop().animate({ left: -150, opacity: 0 }, 400); }
+    	    };
+
+    	    // hide all captions initially
+    	    hideCaptions( $('#listing .panel') );;
     	}; 
     });
     </script>
@@ -118,28 +129,6 @@
         
 <!--     </div> -->
     
-    <!-- AnythingSlider #3 -->
-  <ul id="slider3">
-   <li class="panel1">
-    <!-- Note this caption is before the image, all others it is after -->
-    <div class="caption-top">In Soviet Russia, concrete pours you!</div>
-    <img src="demos/images/slide-civil-1.jpg" alt="" />
-   </li>
-   <li class="panel2">
-    <img src="demos/images/slide-env-1.jpg" alt="" />
-    <div class="caption-right">How many supervisors are there? Wrong! 5, who is taking the picture?</div>
-   </li>
-   <li class="panel3">
-    <img src="demos/images/slide-civil-2.jpg" alt="" />
-    <div class="dcTitle">Title</div>
-    <div class="caption-bottom">Alas, the pylon would never make it to the hydrant, her true love.</div>
-   </li>
-   <li class="panel4">
-    <img src="demos/images/slide-env-2.jpg" alt="" />
-    <div class="caption-left">Take a left at the traffic circle.</div>
-   </li>
-  </ul>
-  <!-- END AnythingSlider #3 -->
-    
+  
   </body>
 </html>

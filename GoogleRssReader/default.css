@@ -26,4 +26,35 @@
 #listing img{
 	width:100%;
 	height:100%;
+	position: relative;
+	top:0px;
+	left:0px;
+}
+
+
+#listing .caption-top, #listing .caption-right,
+ #listing .caption-bottom, #listing .caption-left #listing .dcTitle {
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  margin: 0;
+  position: absolute;
+  z-index: 10;
+  opacity: .8;
+  filter: alpha(opacity=80);
+ }
+ 
+#listing .caption-bottom {
+  width: 580px;
+ }
+ 
+#listing .dcTitle { 
+	bottom:0;
+    background-color: rgba(256, 256, 256, 0.95); 
+    width:533px;
+    position:absolute;
+    padding:5px;
+    border-radius:5px;
+    margin-left:1px;
+    margin-bottom:2px;
 }
