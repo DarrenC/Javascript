@@ -49,11 +49,11 @@ div.anythingSlider .start-stop:hover, div.anythingSlider .start-stop.hover {
 /**** Active State (slider has keyboard focus) ****/
 /* slider window - top & bottom borders, active state */
 div.anythingSlider.activeSlider .anythingWindow {
-	border-color: #7C9127;
+	border-color: #AAAAAA;
 }
 /* Navigation buttons, active state */
 div.anythingSlider.activeSlider .anythingControls ul a.cur, div.anythingSlider.activeSlider .anythingControls ul a {
-	background-color: #7C9127;
+	background-color: #AAAAAA;
 }
 /* start-stop button, stopped, active state */
 div.anythingSlider .start-stop {
